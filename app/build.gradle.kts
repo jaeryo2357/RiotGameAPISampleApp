@@ -4,6 +4,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -57,16 +58,20 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.3.1")
     implementation("com.google.android.material:material:1.4.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.0")
-    implementation("andridx.compose.material:material:1.0.1")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.0.1")
+    implementation(Lib.Compose.preview)
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
-    implementation("androidx.activity:activity-compose:1.3.1")
+    implementation(Lib.Compose.activity)
+    implementation(Lib.Compose.material)
 
     testImplementation("junit:junit:4.+")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.1")
-    debugImplementation("androidx.compose.ui:ui-tooling:1.0.1")
+    androidTestImplementation(Lib.Compose.test)
+    debugImplementation(Lib.Compose.tooling)
 
     implementation(Lib.Network.retrofit)
+    implementation(Lib.Network.retrofit_gson)
+
+    implementation(Lib.Hilt.hilt)
+    kapt(Lib.Hilt.compiler)
 }
