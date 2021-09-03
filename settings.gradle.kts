@@ -7,4 +7,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "LoLApp"
-include ':app'
+include(":app")
