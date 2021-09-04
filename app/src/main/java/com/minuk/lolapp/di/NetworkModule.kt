@@ -1,5 +1,6 @@
 package com.minuk.lolapp.di
 
+import com.minuk.lolapp.network.RiotService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,6 +19,13 @@ object NetworkModule {
                 .baseUrl("https://asia.api.riotgames.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
+    }
+
+    @Provides
+    fun provideRiotService(
+        retrofit: Retrofit
+    ): RiotService {
+        return retrofit.create(RiotService::class.java)
     }
 
     @Provides
