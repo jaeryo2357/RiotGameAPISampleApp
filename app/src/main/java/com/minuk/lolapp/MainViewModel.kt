@@ -20,7 +20,7 @@ class MainViewModel @Inject constructor(
     }
 
     fun requestRiotLeaderBoards() = viewModelScope.launch(dispatchers) {
-        val response = riotRepository.getLeaderboards()
+        val response = riotRepository.getChampions()
         Log.d("response", response.toString())
     }
 }

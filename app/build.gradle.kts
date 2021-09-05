@@ -63,6 +63,8 @@ dependencies {
     implementation(Lib.Compose.preview)
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
     implementation(Lib.Compose.activity)
+    implementation(Lib.Compose.constraint)
+    implementation(Lib.Compose.coil)
     implementation(Lib.Compose.material)
 
     testImplementation("junit:junit:4.+")

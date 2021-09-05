@@ -16,7 +16,7 @@ object NetworkModule {
     @Provides
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
-                .baseUrl("https://asia.api.riotgames.com")
+                .baseUrl("https://ddragon.leagueoflegends.com/cdn/11.17.1/data/ko_KR/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
     }
