@@ -19,8 +19,12 @@ import coil.compose.rememberImagePainter
 import com.minuk.lolapp.ui.text.OutLinedText
 
 @Composable
-fun ChampionList(champions: List<ChampionModel>) {
+fun ChampionList(
+    modifier: Modifier,
+    champions: List<ChampionModel>
+) {
     LazyColumn(
+        modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         val chunkedItems = champions.chunked(2)

@@ -4,10 +4,10 @@ import java.lang.Exception
 
 sealed class Result<T> {
 
-    class Success<T> (date: T): Result<T>()
+    data class Success<T> (val date: T): Result<T>()
 
-    class Error<T>(
-        exception: Exception? = null,
-        message: String? = null
+    data class Error<T>(
+        val exception: Exception? = null,
+        val message: String? = null
     ): Result<T>()
 }
