@@ -1,10 +1,8 @@
 package com.minuk.lolapp.network
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.google.gson.annotations.SerializedName
 
-@Serializable
 open class Status (
-    val message : String? = null,
-    @SerialName("status_code") val statusCode: Int? = 200
+    @SerializedName("message") val message : String? = null,
+    @SerializedName("status_code") val statusCode: Int? = 200
 )

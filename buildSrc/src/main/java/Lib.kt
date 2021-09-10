@@ -19,6 +19,7 @@ object Lib {
         const val test = "androidx.compose.ui:ui-test-junit4:$composeVersion"
         const val coil = "io.coil-kt:coil-compose:1.3.2"
         const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07"
+        const val liveData = "androidx.compose.runtime:runtime-livedata:$composeVersion"
         const val tooling = "androidx.compose.ui:ui-tooling:$composeVersion"
         const val preview = "androidx.compose.ui:ui-tooling-preview:$composeVersion"
         const val material = "androidx.compose.material:material:$composeVersion"

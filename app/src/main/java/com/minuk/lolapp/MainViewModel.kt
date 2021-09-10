@@ -1,15 +1,14 @@
 package com.minuk.lolapp
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.minuk.lolapp.data.RiotRepository
 import com.minuk.lolapp.network.Result
-import com.minuk.lolapp.network.model.Champions
-import com.minuk.lolapp.ui.champion.ChampionModel
+import com.minuk.lolapp.network.model.Champion
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,13 +18,13 @@ class MainViewModel @Inject constructor(
     private val dispatchers: CoroutineDispatcher
 ): ViewModel() {
 
-    private val _isLoading = MutableStateFlow(false)
-    val isLoading: StateFlow<Boolean> = _isLoading
-    private val _errorMessage = MutableStateFlow("")
-    val errorMessage: StateFlow<String> = _errorMessage
+    private val _isLoading = MutableLiveData(false)
+    val isLoading: LiveData<Boolean> = _isLoading
+    private val _errorMessage = MutableLiveData("")
+    val errorMessage: LiveData<String> = _errorMessage
 
-    private val _champions = MutableStateFlow<List<ChampionModel>>(emptyList())
-    val champions: StateFlow<List<ChampionModel>> = _champions
+    private val _champions = MutableLiveData<List<Champion>>(emptyList())
+    val champions: LiveData<List<Champion>> = _champions
 
 
     init {
@@ -33,24 +32,23 @@ class MainViewModel @Inject constructor(
     }
 
     private fun showProgressBar() {
-        _isLoading.value = true
+        _isLoading.postValue(true)
     }
 
     private fun hideProgressBar() {
-        _isLoading.value = false
+        _isLoading.postValue(false)
     }
 
     fun requestRiotLeaderBoards() = viewModelScope.launch(dispatchers) {
         try {
             showProgressBar()
-
             when(val response = riotRepository.getChampions()) {
                 is Result.Success -> {
-                    _champions.value = response.date
+                    _champions.postValue(response.date)
                 }
                 is Result.Error -> {
                     response.message?.let {
-                        _errorMessage.value = it
+                        _errorMessage.postValue(it)
                     }
                 }
             }
